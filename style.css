@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+body
+{
+    background-image: linear-gradient(to right, 
+    rgb(230, 23, 23) 45%,
+    rgba(233, 7, 176, 0.5) 91%);
+
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+
+.page-frame
+{
+    border: 2px solid #fff;
+    border-radius: 30px;
+    box-shadow: 12px 12px 12px 12px;
+    
+}
+
+h1
+{
+  padding-left: 40px;
+}
+
+.music-container
+{
+    background-color: orange;
+    border-radius: 20px;
+    box-shadow:5px 20px 20px 5px rgba(233, 7, 176, 0.5);
+    display: flex;
+    flex-direction:column;
+    padding: 20px 30px;
+    position: relative;
+    margin: 100px 0;
+    z-index: 10;
+  
+}
+
+.image-container
+{
+    position: relative;
+    width: 110px;
+}
+
+
+.image-container img
+{
+    border-radius: 50%;
+    object-fit: cover;
+    height: 110px;
+    width: inherit;
+    position: absolute;
+    bottom: 0;
+    animation: rotate 3s infinite;
+    animation-play-state: paused;
+}
+
+
+.music-container.play .image-container img
+{
+  animation-play-state: running;
+}
+
+@keyframes rotate
+{
+    from
+    {
+       transform: rotate(0deg);
+    }
+    to 
+    {
+      transform: rotate(360deg);
+    }
+}
+
+.navigation
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.action-btn
+{
+    background-color:orange;
+    border: 0;
+    padding: 10px;
+    margin: 0 20px;
+    color: #dfdbdf;
+    cursor: pointer;
+}
+
+
+.action-btn.action-btn-big
+{
+ color: #cdc2d0;
+ font-size: 30px;
+}
+
+
+.music-info
+{
+    background-color: #fff;
+    border-radius: 15px 15px 0 0;
+    position: absolute;
+    width: calc(80%);
+    top: 0;
+    left: 20px;
+    opacity: 0;
+    transform: translateY(0%);
+    transition: transform 0.3s ease-in,opacity 0.3 ease-in; 
+    z-index: 0;
+    padding: 10px 10px 10px 150px;
+}
+
+
+.music-container.play .music-info
+{
+    opacity: 1;
+    transform: translateY(-100%);
+}
+
+.music-info h4
+{
+    margin: 0;
+    
+}
+
+
+.progress-container
+{
+    background-color: rgb(100, 14, 14);
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+}
+
+.progress
+{
+    background-color: orange;
+    border-radius:5px ;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+
+}
