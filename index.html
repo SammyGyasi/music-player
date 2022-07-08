@@ -11,6 +11,13 @@
     <link rel="icon" href="favicon.png" />
     <link rel="stylesheet" href="style.css" />
     <title>Music Player</title>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js");
+        });
+      }
+    </script>
   </head>
 
   <body>
