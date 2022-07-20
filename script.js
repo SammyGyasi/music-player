@@ -10,53 +10,48 @@ const title = document.getElementById('title');
 const cover = document.getElementById('cover');
 
 
-const songs =['Elle', 'Ommema','Deserve Glory'];//song titles
+const songs = ['elle', 'Ommema', 'deserve glory'];//song titles
 
-let songIndex=2;
+let songIndex = 2;
 
 
 loadSong(songs[songIndex]);
 
 
-function loadSong(song) 
-{
-    title.innerHTML = song;
-    audio.src=`musics/${song}.mp3`;
-    cover.src=`images/${song}.jpg`;
+function loadSong(song) {
+  title.innerHTML = song;
+  audio.src = `musics/${song}.mp3`;
+  cover.src = `images/${song}.jpg`;
 }
 
 
-function playSong()
-{
-    musicContainer.classList.add("play");
-    playBtn.querySelector("i.fas").classList.remove("fa-play");
-    playBtn.querySelector("i.fas").classList.add("fa-pause");
+function playSong() {
+  musicContainer.classList.add("play");
+  playBtn.querySelector("i.fas").classList.remove("fa-play");
+  playBtn.querySelector("i.fas").classList.add("fa-pause");
 
 
-    audio.play();
+  audio.play();
 
 }
 
 
 //pauseSong Function
-function pauseSong()
-{
-    musicContainer.classList.remove("play");
-    playBtn.querySelector("i.fas").classList.add("fa-play");
-    playBtn.querySelector("i.fas").classList.remove("fa-pause");
+function pauseSong() {
+  musicContainer.classList.remove("play");
+  playBtn.querySelector("i.fas").classList.add("fa-play");
+  playBtn.querySelector("i.fas").classList.remove("fa-pause");
 
 
-    audio.pause();
+  audio.pause();
 
 }
 
 //previous song Function
-function prevSong()
-{
+function prevSong() {
   songIndex--;
-  if(songIndex<0)
-  {
-    songIndex=songs.length-1;
+  if (songIndex < 0) {
+    songIndex = songs.length - 1;
   }
 
   loadSong(songs[songIndex]);
@@ -64,12 +59,10 @@ function prevSong()
 }
 
 //nextsong Function
-function nextSong()
-{
+function nextSong() {
   songIndex++;
-  if(songIndex>songs.length - 1)
-  {
-    songIndex=0;
+  if (songIndex > songs.length - 1) {
+    songIndex = 0;
   }
 
   loadSong(songs[songIndex]);
@@ -77,42 +70,38 @@ function nextSong()
 }
 
 
-function updateProgress(e)
-{
-const { duration,currentTime}=e.srcElement;
-progressPercent=(currentTime/duration)*100;
-progress.style.width=`${progressPercent}%`;
+function updateProgress(e) {
+  const { duration, currentTime } = e.srcElement;
+  progressPercent = (currentTime / duration) * 100;
+  progress.style.width = `${progressPercent}%`;
 }
 
-function setProgress(e)
-{
-    const width=this.clientWidth;
-    const clickX=e.offsetX;
+function setProgress(e) {
+  const width = this.clientWidth;
+  const clickX = e.offsetX;
 
-    const duration=audio.duration;
+  const duration = audio.duration;
 
-    audio.currentTime=(clickX/width)*duration;
+  audio.currentTime = (clickX / width) * duration;
 
 
-    // 
+  // 
 }
 
 //playButton EventListeners
-playBtn.addEventListener("click", ()=>{
-    const isPlaying=musicContainer.classList.contains("play");
+playBtn.addEventListener("click", () => {
+  const isPlaying = musicContainer.classList.contains("play");
 
-    if(isPlaying)
-     {
-        pauseSong();
-     }
-     else
-     {
-        playSong();
-     }
+  if (isPlaying) {
+    pauseSong();
+  }
+  else {
+    playSong();
+  }
 });
 
 
 prevBtn.addEventListener("click", prevSong);
 nextBtn.addEventListener("click", nextSong);
-audio.addEventListener("timeupdate",updateProgress);
+audio.addEventListener("timeupdate", updateProgress);
 progressContainer.addEventListener("click", setProgress);
